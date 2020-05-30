@@ -51,6 +51,20 @@ const TemplateWrapper = ({ children }) => {
           />
           <div className="container__sidebar">
             <div className="sidebar">
+
+
+
+
+              <div class="profile-container">
+                <img class="profile" src="https://www.gravatar.com/avatar/3f1e138aed35af0b978a9140d29bc067?s=256&d=http%3A%2F%2Fcv.thechoephix.com%2Fassets%2Fimages%2FDSC00884-1.png" alt=""/>
+                <h1 class="name">Stefan Ginev</h1>
+                <h3 class="tagline">Software Developer</h3>
+              </div>
+
+
+
+
+
               <h6 className="sidebar__title">
                 <Link to="/">{data.datoCmsSite.globalSeo.siteName}</Link>
               </h6>
