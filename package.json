@@ -4,9 +4,12 @@
   "version": "1.0.0",
   "author": "Stefano Verna <s.verna@datocms.com>",
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "dotenv": "^8.1.0",
     "gatsby": "^2.22.10",
     "gatsby-image": "^2.2.34",
+    "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
     "gatsby-plugin-react-helmet": "^3.1.16",
     "gatsby-plugin-sass": "^2.1.24",
     "gatsby-source-datocms": "^2.2.4",

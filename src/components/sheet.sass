@@ -1,0 +1,113 @@
+$color-accent: #BA9432
+$color-dark: #484848
+
+$story-padding: 80px
+
+.desk
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding-top: 36px
+  padding-bottom: 240px
+  
+.sheet
+  background-color: white
+  width: 100%
+  max-width: 960px
+  min-height: 1680px
+  -webkit-box-shadow: 0px 2px 140px rgba(0, 0, 0, 0.2)
+  -moz-box-shadow: 0px 2px 140px rgba(0, 0, 0, 0.2)
+  box-shadow: 0px 2px 140px rgba(0, 0, 0, 0.2)
+  position: relative
+
+  font-family: Lato
+
+.content
+  padding-right: 300px
+  display:block
+  outline: 1px dotted lime
+
+  .header
+    height: 220px
+    padding: $story-padding
+    display: flex
+    flex-direction: column
+    align-items: left
+    outline: 1px dotted red
+    h1
+      color: $color-dark
+      text-align: left
+      font-size: 48px
+      letter-spacing: .15em
+    h3
+      color: $color-accent
+      text-align: left
+      font-size: 20px
+  
+  .story
+    outline: 1px dotted blue
+    padding: 20px $story-padding
+
+    h1
+      background: $color-dark
+      color: white
+      font-weight: bold
+      font-size: 1.2em
+      text-transform: uppercase
+      padding: .1em 0
+      padding-right: 2em
+      display: inline-block
+      position: relative
+      margin-bottom: 20px
+
+      &:before
+        content: ''
+        position: absolute
+        top: 0px
+        left: -$story-padding
+        bottom: 0px
+        width: $story-padding
+        background: $color-dark
+
+    .spacer
+      height: $story-padding
+    .item-spacer
+      height: 40px
+
+    h3
+      font-weight: bolder
+      margin-bottom: 10px
+
+
+
+
+
+.sidebar
+  background: $color-dark
+  position: absolute
+  right: 36px
+  width: 240px
+  height: 100%
+  color: #fff
+  margin-bottom: 20px
+
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding: 60px 24px
+
+  a
+    color: white
+
+  .group
+    margin-bottom: 80px
+
+  &:after 
+    content: ''
+    position: absolute
+    top: 0px
+    left: -15px
+    right: -15px
+    bottom: 0px
+    border-right: 8px solid $color-accent
+

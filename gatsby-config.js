@@ -7,6 +7,17 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Lato`,
+            variants: [`400`, `700`]
+          }
+        ],
+      },
+    },
     `gatsby-transformer-remark`,
     {
       resolve: `gatsby-source-datocms`,
