@@ -1,2 +1,7 @@
 tasks:
-  - init: yarn install && yarn run develop
+  - init: yarn install
+    command: yarn run develop
+    openIn: right
+ports:
+  - port: 8000
+    onOpen: open-browser
