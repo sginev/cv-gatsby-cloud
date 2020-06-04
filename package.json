@@ -23,8 +23,8 @@
     "node-sass": "^4.13.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-helmet": "^5.2.0",
-    "react-slick": "^0.25.2",
+    "react-helmet": "^6.0.0",
+    "react-slick": "^0.26.1",
     "slick-carousel": "^1.8.1"
   },
   "keywords": [
@@ -38,6 +38,6 @@
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\""
   },
   "devDependencies": {
-    "prettier": "^1.17.0"
+    "prettier": "^2.0.5"
   }
 }
