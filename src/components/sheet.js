@@ -60,6 +60,7 @@ const UK = `
       <g><use xlink:href="#a1bQTbAWug" opacity="1" fill="#FFF" fill-opacity="1" /></g>
   </g>
 </svg>`
+        //<span dangerouslySetInnerHTML={{__html: FlagUK}} />
 
 //const avatarSize = 160
 //const avatarUrl = `https://www.gravatar.com/avatar/3f1e138aed35af0b978a9140d29bc067?s=${ avatarSize }&d=http%3A%2F%2Fcv.thechoephix.com%2Fassets%2Fimages%2FDSC00884-1.png`
@@ -75,7 +76,6 @@ const ResumeSheet = ({ data }) => {
       <div className="top-detail" />
 
       <div className="sidebar">
-        <span dangerouslySetInnerHTML={{__html: UK}} />
         <ProfileImage data={ data } />
         <div className="groups-wrapper">
           <div className="group contact-details">
@@ -86,7 +86,7 @@ const ResumeSheet = ({ data }) => {
           <div className="group languages">
             <SidebarHeader>Languages</SidebarHeader>
             <ul>
-              <li> 
+              <li className="link"> 
                 <img className="flag" src={ FlagUK } /> 
                 <span dangerouslySetInnerHTML={{ __html: data.general.languages }} /> 
               </li>

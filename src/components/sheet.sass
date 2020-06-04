@@ -170,7 +170,7 @@ $sidebar-width: 256px
       align-items: center
       line-height: 2em
 
-    img.flag
+    .flag
       width: 1em
       display: inline
       margin-right: .5em
@@ -179,22 +179,24 @@ $sidebar-width: 256px
       width: 1.0em
       margin-right: .5em
       transition-property: fill, color
-      transition-duration: 250ms
     a
-      color: inherit
       border-bottom: solid #FFF0 1px
       transition-property: border-color, color
-      transition-duration: 250ms
       line-height: 2em
-    a:hover
-      color: $color-accent
+    a,
+    svg
+      color: inherit
+      transition-duration: 300ms
     li.link:hover
       color: $color-accent
+      a,
+      svg
+        transition-duration: 250ms
     li.link:hover svg
       color: $color-accent
 
     .lang-desc
-      opacity: .3
+      opacity: .0
       font-size: .75em
       transition-property: opacity, color
       transition-duration: 250ms
