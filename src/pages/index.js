@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import Masonry from 'react-masonry-component'
 import Img from 'gatsby-image'
 import ResumeSheet from '../components/sheet'
 import { HelmetDatoCms } from "gatsby-source-datocms"
 
-import "../styles/index.sass";
 import '@fortawesome/fontawesome';
+import "../styles/index.sass";
 
     //<HelmetDatoCms seo={ data.core.seoMetaTags } />
 export default ({ data }) => (
   <div className="desk">
     
+    <div className="background" />
     
     <ResumeSheet data={ data } />
 
