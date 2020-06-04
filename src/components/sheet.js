@@ -36,6 +36,8 @@ const StorySection = ({ children, title }) => (
 
 const ResumeSheet = ({ data }) => {
   const [ selectedProject, selectProject ] = useState( null )
+  console.log( selectProject )
+
   const hightlightSkill = node => node.confidence > 3 && node.priority > 3 && node.categories.includes("web")
   const main_skills = data.skills.nodes.filter( hightlightSkill )
   const other_skills = data.skills.nodes.filter( node => ! main_skills.includes( node ) )
@@ -70,13 +72,13 @@ const ResumeSheet = ({ data }) => {
           }
           {
             data.projects.nodes.filter( node => node.priority > 3 ).map( ( node, i ) => (
-              <div key={ node.id } className="item" onClick={ () => selectProject( node.id ) }>
+              <div key={ node.id } className="item" /*onClick={ () => selectProject( node.id ) }*/ >
                 <ItemSpacer/>
                 <div className="upper-row">
                   <h3 className="title">{ node.title }</h3>
                 </div>
                 <div className="details" active={ selectedProject === node.id ? '' : null } >
-                  { node.links.map( link => <a href={ link.url } target="_blank">Link to: { link.label }</a> ) }
+                  { node.links.map( link => <a key={ link.id } href={ link.url } target="_blank" rel="noreferrer">Link to: { link.label }</a> ) }
                   { node.links.length ? <p>-</p> : null }
                 </div>
                 <div className="project-tagline" dangerouslySetInnerHTML={{ __html: node.summary }}>
@@ -97,7 +99,7 @@ const ResumeSheet = ({ data }) => {
                   <div className="job-title">{ node.jobTitle }</div>
                   <div className="time">({ node.dates })</div>
                 </div>
-                <div className="details" dangerouslySetInnerHTML={{ __html: node.description }} />
+                <div className="description" dangerouslySetInnerHTML={{ __html: node.description }} />
                 <ItemSpacer/>
               </div>
             ) )

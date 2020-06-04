@@ -70,6 +70,7 @@ query IndexQuery {
         }
       }
       links {
+        id
         label
         url
         linkType
