@@ -3,18 +3,19 @@ import { Link, graphql } from 'gatsby'
 import Masonry from 'react-masonry-component'
 import Img from 'gatsby-image'
 import ResumeSheet from '../components/sheet'
+import { HelmetDatoCms } from "gatsby-source-datocms"
 
 import "../styles/index.sass";
 import '@fortawesome/fontawesome';
 
 export default ({ data }) => (
   <div className="desk">
-
+    
     <ResumeSheet data={ data } />
 
-    <footer class="footer">
-      <div class="text-center">
-        <small class="copyright">{data.datoCmsHome.copyright}</small>
+    <footer className="footer">
+      <div className="text-center">
+        <small className="copyright">{data.datoCmsHome.copyright}</small>
       </div>
     </footer>
 
@@ -60,12 +61,13 @@ query IndexQuery {
       links {
         label
         url
-        data
+        linkType
       }
     }
   }
   experiences: allDatoCmsExperience(sort: {fields: dates, order: DESC}) {
     nodes {
+      id
       title
       jobTitle
       dates
@@ -74,6 +76,26 @@ query IndexQuery {
         fluid(maxWidth: 960, imgixParams: {fm: "jpg", auto: "compress"}) {
           src
         }
+      }
+    }
+  }
+  theme: datoCmsTheme(name: {eq: "pro-long"}) {
+    name
+    profilePicture {
+      fluid(maxWidth: 256, imgixParams: {fm: "jpg", auto: "compress"}) {
+        src
+        width
+        height
+        ...GatsbyDatoCmsSizes
+      }
+    }
+  }
+  theme_default: datoCmsTheme(name: {eq: "default"}) {
+    name
+    profilePicture {
+      fluid(imgixParams: {fm: "jpg", auto: "compress", w: "256"}) {
+        src
+        ...GatsbyDatoCmsSizes
       }
     }
   }
