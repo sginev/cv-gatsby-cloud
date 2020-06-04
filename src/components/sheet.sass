@@ -118,6 +118,15 @@ $sidebar-width: 256px
       font-weight: bolder
       margin-bottom: 10px
 
+    .item .details
+      max-height: 0em
+      transition: 250ms max-height ease-in-out
+      overflow: hidden
+      a, p
+        font-size: 13px
+    .item .details[active]
+      max-height: 10em
+
     .xp-header
       position: relative
       height: 100px
