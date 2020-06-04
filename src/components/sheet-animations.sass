@@ -1,0 +1,50 @@
+$slide-distance: 20px
+$slide-delay: 200ms
+
+@keyframes fadein-sheet
+  0%
+    opacity: 0
+    transform: translate(0px, 10px)
+.sheet
+  animation: 500ms ease fadein-sheet
+
+@keyframes slide-sidebar
+  from
+    opacity: 0
+    right: -$slide-distance
+  to
+    opacity: 1
+.sidebar
+  opacity: 0
+  animation: 300ms ease slide-sidebar forwards
+  animation-delay: $slide-delay
+
+@keyframes fadein-profession
+  from
+    opacity: 0
+    transform: translate(5px, 0px)
+  to
+    opacity: 1
+.content .header .job
+  opacity: 0
+  animation: 1.5s ease forwards fadein-profession
+  animation-delay: .5s
+
+@keyframes slide-content
+  from
+    opacity: 0
+    transform: translate(-$slide-distance, 0px)
+  to
+    opacity: 1
+.content .story
+  opacity: 0
+  animation: 300ms ease slide-content forwards
+  animation-delay: $slide-delay
+
+@keyframes slide-story-section-header
+  from
+    //padding-right: 1em
+    transform: translate(-20px, 0px)
+.content .story h1
+  animation: 300ms ease forwards slide-story-section-header
+  animation-delay: $slide-delay
