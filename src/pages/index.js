@@ -44,6 +44,17 @@ query IndexQuery {
       label
       href
       faIcon
+      visible
+    }
+  }
+  skills: allDatoCmsSkill(sort: {order: ASC, fields: position}) {
+    nodes {
+      id
+      faIcon
+      label
+      confidence
+      priority
+      categories
     }
   }
   projects: allDatoCmsProject(sort: {order: ASC, fields: position}) {
@@ -58,6 +69,7 @@ query IndexQuery {
       cover {
         fluid(maxWidth: 960, imgixParams: {fm: "jpg", auto: "compress"}) {
           src
+          ...GatsbyDatoCmsSizes
         }
       }
       links {
@@ -75,28 +87,21 @@ query IndexQuery {
       dates
       description
       logo {
-        fluid(maxWidth: 960, imgixParams: {fm: "jpg", auto: "compress"}) {
+        fluid(maxHeight: 80, imgixParams: {fm: "jpg", auto: "compress", h:"80"}) {
           src
+          ...GatsbyDatoCmsSizes
         }
       }
     }
   }
   theme: datoCmsTheme(name: {eq: "pro-long"}) {
     name
+    showEducation
     profilePicture {
-      fluid(maxWidth: 256, imgixParams: {fm: "jpg", auto: "compress"}) {
+      fluid(maxWidth: 256, imgixParams: {fm: "jpg", auto: "compress", w:"256"}) {
         src
         width
         height
-        ...GatsbyDatoCmsSizes
-      }
-    }
-  }
-  theme_default: datoCmsTheme(name: {eq: "default"}) {
-    name
-    profilePicture {
-      fluid(imgixParams: {fm: "jpg", auto: "compress", w: "256"}) {
-        src
         ...GatsbyDatoCmsSizes
       }
     }

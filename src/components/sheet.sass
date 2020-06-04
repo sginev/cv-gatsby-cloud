@@ -24,13 +24,32 @@ $sidebar-width: 256px
   font-family: Lato
   cursor: default
 
+  overflow: hidden
+
+  outline: #0002 solid 1px
+
+  &:after
+    content: ''
+    position: absolute
+    top: 0px
+    left: 0px
+    right: 0px
+    bottom: 0px
+    box-shadow: inset 0 0 200px #0004
+    pointer-events: none
+
+  .top-detail
+    background: $color-dark
+    width: 100%
+    height: 20px
+
 .content
   padding-right: $sidebar-width
   display:block
 
   .header
-    height: 240px
-    padding: 60px
+    height: 280px
+    padding: 80px 70px
     display: flex
     flex-direction: column
     justify-content: flex-start
@@ -38,12 +57,13 @@ $sidebar-width: 256px
     h1
       color: $color-dark
       text-align: left
-      font-size: 48px
+      font-size: 52px
       letter-spacing: .15em
     h3
       color: $color-accent
       text-align: left
-      font-size: 20px
+      font-size: 24px
+      padding-right: 16px
   
   .story
     padding: 20px $story-padding
@@ -54,12 +74,20 @@ $sidebar-width: 256px
       font-weight: bold
       font-size: 1.2em
       text-transform: uppercase
-      padding: .1em 0
-      padding-right: 2em
       display: inline-block
       position: relative
       margin-bottom: 20px
-
+      padding: .1em 0
+      padding-right: 2em
+      transition: padding-right .25s
+      &:after 
+        $w: 8px
+        content: ''
+        position: absolute
+        top: 0px
+        right: -$w
+        bottom: 0px
+        border-right: $w solid $color-accent
       &:before
         content: ''
         position: absolute
@@ -68,6 +96,8 @@ $sidebar-width: 256px
         bottom: 0px
         width: $story-padding
         background: $color-dark
+    .section:hover h1
+      padding-right: 2.25em
 
     .spacer
       height: $story-padding
@@ -78,13 +108,27 @@ $sidebar-width: 256px
       font-weight: bolder
       margin-bottom: 10px
 
-
+    .xp-header
+      position: relative
+      height: 100px
+    .logo
+      filter: saturate(0%)
+      opacity: .8
+      position: absolute
+      right: 0
+      width: 100%
+      height: 90px
+      max-width: 200px
+      img
+        object-fit: contain !important
+        object-position: right top !important
 
 
 
 .sidebar
   background: $color-dark
   position: absolute
+  top: 20px
   right: 0px
   width: $sidebar-width
   height: 100%
@@ -120,29 +164,44 @@ $sidebar-width: 256px
       font-weight: bolder
       text-transform: uppercase
       line-height: 3em
-    li
-      line-height: 2em
-  .group.contact-details
+    img.flag
+      width: 2em
+      display: inline
+      margin-right: .5em
     li
       display: flex
       flex-direction: row
       align-items: center
-      line-height: 1.5em
+      line-height: 2em
 
-      svg.svg-inline--fa
-        height: 1.25em
-        width: 1.25em
-        padding-right: .5em
+    svg.svg-inline--fa
+      height: 1.25em
+      width: 1.25em
+      padding-right: .5em
+      transition-property: fill, color
+      transition-duration: 250ms
+    a
+      color: inherit
+      border-bottom: solid #FFF0 1px
+      transition-property: border-color, color
+      transition-duration: 250ms
+      line-height: 2em
+    a:hover
+      color: $color-accent
+    li.link:hover
+      color: $color-accent
 
-      a
-        color: #FFFD
-        border-bottom: solid #FFF0 1px
-        transition-property: border-color, color
-        transition-duration: 250ms
-        line-height: 2em
-      a:hover
-        color: #FFFF
-        border-bottom: solid white 1px
+    .lang-desc
+      opacity: .3
+      font-size: .75em
+      transition-property: opacity, color
+      transition-duration: 250ms
+      margin-left: .25em
+      color: white
+    a:hover .lang-desc
+      opacity: .8
+      color: white
+      color: $color-accent
     
 
   &:after 
@@ -152,4 +211,3 @@ $sidebar-width: 256px
     right: -12px
     bottom: 0px
     border-right: 12px solid $color-accent
-

@@ -15,41 +15,66 @@ import FlagUK from '../assets/flag-uk.svg'
 // Add all icons to the library so you can use it in your page
 library.add(fas, far, fab)
 
-const StoryHeading = ({ children }) => <h1>{ children }</h1>
-
 const Spacer = () => <div className="spacer" />
 const ItemSpacer = () => <div className="item-spacer" />
 
 const ProfileImage = ({ data }) => <Img className="profile" fluid={ data.theme.profilePicture.fluid } /> 
 
 const SidebarHeader = ({ children }) => <h2>{ children }</h2>
-const ContactDetailsItem = node => <li key={ node.id }><i className={ node.faIcon }></i><a href={ node.href }>{ node.label }</a></li>
+const SidebarListItem = node => 
+  node.href ? <li className='link'><i className={ node.faIcon }></i><a href={ node.href }>{ node.label }</a></li>
+            : <li><i className={ node.faIcon }></i><span>{ node.label }</span></li>
+
+const StorySection = ({ children, title }) => (
+  <div className="section">
+    <h1>{ title }</h1>
+    { children }
+    <Spacer/>
+  </div>
+)
 
 //const avatarSize = 160
 //const avatarUrl = `https://www.gravatar.com/avatar/3f1e138aed35af0b978a9140d29bc067?s=${ avatarSize }&d=http%3A%2F%2Fcv.thechoephix.com%2Fassets%2Fimages%2FDSC00884-1.png`
 //const ProfileImage = ({ data }) => <img className="profile" src={ avatarUrl } width={ avatarSize } height={ avatarSize } alt=""/> 
 
 const ResumeSheet = ({ data }) => {
-  console.log( 9999, FlagUK )
+  const hightlightSkill = node => node.confidence > 3 && node.priority > 3 && node.categories.includes("web")
+  const main_skills = data.skills.nodes.filter( hightlightSkill )
+  const other_skills = data.skills.nodes.filter( node => ! main_skills.includes( node ) )
   return (
     <div className="sheet">
+      
+      <div className="top-detail" />
 
       <div className="sidebar">
         <ProfileImage data={ data } />
         <div className="groups-wrapper">
           <div className="group contact-details">
             <ul>
-              { data.contactDetails.nodes.map( node => <ContactDetailsItem {...node} /> ) }
+              { data.contactDetails.nodes.filter( node => node.visible ).map( node => <SidebarListItem key={ node.id } {...node} /> ) }
             </ul>
           </div>
           <div className="group languages">
             <SidebarHeader>Languages</SidebarHeader>
-            <div dangerouslySetInnerHTML={{ __html: data.general.languages }} />
-          </div>
-          <div className="group skills">
-            <SidebarHeader>Skills</SidebarHeader>
             <ul>
-              { data.general.skillsList.split('\n').map( skill => <li key={ skill }>{ skill }</li> ) }
+              <li> 
+                <img className="flag" src={ FlagUK } /> 
+                <span dangerouslySetInnerHTML={{ __html: data.general.languages }} /> 
+              </li>
+            </ul>
+          </div>
+            
+          <div className="group skills main">
+            <SidebarHeader>Main Skills</SidebarHeader>
+            <ul>
+              { main_skills.map( node => <SidebarListItem key={ node.id } {...node} /> ) }
+            </ul>
+          </div>
+            
+          <div className="group skills other">
+            <SidebarHeader>Other Skills</SidebarHeader>
+            <ul>
+              { other_skills.map( node => <SidebarListItem key={ node.id } {...node} /> ) }
             </ul>
           </div>
 
@@ -70,14 +95,13 @@ const ResumeSheet = ({ data }) => {
         </div>
         <div className="story">
           
-          <StoryHeading> Career Profile </StoryHeading>
-          <div className="item">
-            <div className="text" dangerouslySetInnerHTML={{ __html: data.general.introduction }} />
-          </div>
-
-          <Spacer/>
+          <StorySection title="Career Profile">
+            <div className="item">
+              <div className="text" dangerouslySetInnerHTML={{ __html: data.general.introduction }} />
+            </div>
+          </StorySection>
           
-          <StoryHeading> Projects </StoryHeading>
+          <StorySection title="Projects">
           {
             data.general.projectsPrologue && false &&
             <div className="item">
@@ -97,36 +121,32 @@ const ResumeSheet = ({ data }) => {
               </div>
             ) )
           }
-
-          <Spacer/>
-
-          <StoryHeading> Experiences </StoryHeading>
+          </StorySection>
+          
+          <StorySection title="Experiences">
           {
             data.experiences.nodes.map( ( node, i ) => (
               <div key={ node.id } className="item">
-                { i > 0 && <ItemSpacer/> }
-                <div className="meta">
-                  <div className="upper-row">
-                    <h3 className="job-title">{ node.title }</h3>
-                    <div className="time">{ node.dates }</div>
-                  </div>
-                  <div className="company">{ node.jobTitle }</div>
+                <ItemSpacer/>
+                <div className="xp-header">
+                  <div className="logo"><Img className="logo" fluid={ node.logo.fluid } width={200}/></div>
+                  <h3 className="company">{ node.title }</h3>
+                  <div className="job-title">{ node.jobTitle }</div>
+                  <div className="time">({ node.dates })</div>
                 </div>
-                <div className="details" dangerouslySetInnerHTML={{ __html: node.description }}>
-                </div>
+                <div className="details" dangerouslySetInnerHTML={{ __html: node.description }} />
+                <ItemSpacer/>
               </div>
             ) )
           }
-
-          <Spacer/>
+          </StorySection>
           
-          <StoryHeading> Miscellaneous </StoryHeading>
-          <div className="item">
-            <div className="text" dangerouslySetInnerHTML={{ __html: data.general.miscellaneous }} />
-          </div>
-
-          <Spacer/>
-
+          <StorySection title="Miscellaneous">
+            <div className="item">
+              <div className="text" dangerouslySetInnerHTML={{ __html: data.general.miscellaneous }} />
+            </div>
+          </StorySection>
+          
           <Spacer/>
 
           <Spacer/>
