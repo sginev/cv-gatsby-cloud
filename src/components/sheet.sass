@@ -1,7 +1,8 @@
 $color-accent: #BA9432
-$color-dark: #484848
+$color-dark: #393939
 
 $story-padding: 80px
+$sidebar-width: 256px
 
 .desk
   display: flex
@@ -24,17 +25,16 @@ $story-padding: 80px
   cursor: default
 
 .content
-  padding-right: 300px
+  padding-right: $sidebar-width
   display:block
-  outline: 1px dotted lime
 
   .header
-    height: 220px
-    padding: $story-padding
+    height: 240px
+    padding: 60px
     display: flex
     flex-direction: column
-    align-items: left
-    outline: 1px dotted red
+    justify-content: flex-start
+    align-items: flex-end
     h1
       color: $color-dark
       text-align: left
@@ -46,7 +46,6 @@ $story-padding: 80px
       font-size: 20px
   
   .story
-    outline: 1px dotted blue
     padding: 20px $story-padding
 
     h1
@@ -86,15 +85,14 @@ $story-padding: 80px
 .sidebar
   background: $color-dark
   position: absolute
-  right: 36px
-  width: 240px
+  right: 0px
+  width: $sidebar-width
   height: 100%
   color: #fff
   margin-bottom: 20px
 
   display: flex
   flex-direction: column
-  padding: 60px 24px
 
   .profile
     padding-top: -50px
@@ -107,8 +105,6 @@ $story-padding: 80px
       right: 0px
       bottom: 0px
 
-      
-
   a
     color: #FFFD
     border-bottom: solid #FFF0 1px
@@ -119,13 +115,41 @@ $story-padding: 80px
     border-bottom: solid white 1px
 
   .group
-    margin-bottom: 80px
+    padding: 24px
+    h2
+      font-weight: bolder
+      text-transform: uppercase
+      line-height: 3em
+    li
+      line-height: 2em
+  .group.contact-details
+    li
+      display: flex
+      flex-direction: row
+      align-items: center
+      line-height: 1.5em
+
+      svg.svg-inline--fa
+        height: 1.25em
+        width: 1.25em
+        padding-right: .5em
+
+      a
+        color: #FFFD
+        border-bottom: solid #FFF0 1px
+        transition-property: border-color, color
+        transition-duration: 250ms
+        line-height: 2em
+      a:hover
+        color: #FFFF
+        border-bottom: solid white 1px
+    
 
   &:after 
-    content: ''
+    //content: ''
     position: absolute
     top: 0px
-    right: -15px
+    right: -12px
     bottom: 0px
-    border-right: 8px solid $color-accent
+    border-right: 12px solid $color-accent
 

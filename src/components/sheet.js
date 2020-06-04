@@ -6,6 +6,14 @@ import { Link } from "gatsby";
 import Img from 'gatsby-image';
 
 import "./sheet.sass";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import FlagUK from '../assets/flag-uk.svg'
+
+// Add all icons to the library so you can use it in your page
+library.add(fas, far, fab)
 
 const StoryHeading = ({ children }) => <h1>{ children }</h1>
 
@@ -14,11 +22,15 @@ const ItemSpacer = () => <div className="item-spacer" />
 
 const ProfileImage = ({ data }) => <Img className="profile" fluid={ data.theme.profilePicture.fluid } /> 
 
+const SidebarHeader = ({ children }) => <h2>{ children }</h2>
+const ContactDetailsItem = node => <li key={ node.id }><i className={ node.faIcon }></i><a href={ node.href }>{ node.label }</a></li>
+
 //const avatarSize = 160
 //const avatarUrl = `https://www.gravatar.com/avatar/3f1e138aed35af0b978a9140d29bc067?s=${ avatarSize }&d=http%3A%2F%2Fcv.thechoephix.com%2Fassets%2Fimages%2FDSC00884-1.png`
 //const ProfileImage = ({ data }) => <img className="profile" src={ avatarUrl } width={ avatarSize } height={ avatarSize } alt=""/> 
 
 const ResumeSheet = ({ data }) => {
+  console.log( 9999, FlagUK )
   return (
     <div className="sheet">
 
@@ -27,20 +39,27 @@ const ResumeSheet = ({ data }) => {
         <div className="groups-wrapper">
           <div className="group contact-details">
             <ul>
-            {
-              data.contactDetails.nodes.map( o => <li key={ o.id }><i className={ "fas " + o.icon }></i><a href={ o.href }>{ o.label }</a></li> )
-            }
+              { data.contactDetails.nodes.map( node => <ContactDetailsItem {...node} /> ) }
             </ul>
           </div>
-          <div className="group languages" dangerouslySetInnerHTML={{ __html: data.general.languages }} />
+          <div className="group languages">
+            <SidebarHeader>Languages</SidebarHeader>
+            <div dangerouslySetInnerHTML={{ __html: data.general.languages }} />
+          </div>
           <div className="group skills">
+            <SidebarHeader>Skills</SidebarHeader>
             <ul>
-            {
-              data.general.skillsList.split('\n').map( skill => <li key={ skill }>{ skill }</li> )
-            }
+              { data.general.skillsList.split('\n').map( skill => <li key={ skill }>{ skill }</li> ) }
             </ul>
           </div>
-          <div className="group education" dangerouslySetInnerHTML={{ __html: data.general.education }} />
+
+          { data.theme.showEducation &&  
+            <div className="group education">
+              <SidebarHeader>Education</SidebarHeader>
+              <div dangerouslySetInnerHTML={{ __html: data.general.education }} />
+            </div>
+          }
+
         </div>
       </div>
 

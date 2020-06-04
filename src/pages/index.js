@@ -8,14 +8,16 @@ import { HelmetDatoCms } from "gatsby-source-datocms"
 import "../styles/index.sass";
 import '@fortawesome/fontawesome';
 
+    //<HelmetDatoCms seo={ data.core.seoMetaTags } />
 export default ({ data }) => (
   <div className="desk">
+    
     
     <ResumeSheet data={ data } />
 
     <footer className="footer">
       <div className="text-center">
-        <small className="copyright">{data.datoCmsHome.copyright}</small>
+        <small className="copyright">{data.core.copyright}</small>
       </div>
     </footer>
 
@@ -41,7 +43,7 @@ query IndexQuery {
       typelabel
       label
       href
-      icon
+      faIcon
     }
   }
   projects: allDatoCmsProject(sort: {order: ASC, fields: position}) {
@@ -100,7 +102,7 @@ query IndexQuery {
     }
   }
 
-  datoCmsHome {
+  core: datoCmsHome {
     seoMetaTags {
       ...GatsbyDatoCmsSeoMetaTags
     }
