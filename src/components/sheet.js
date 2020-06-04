@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-has-content, jsx-a11y/anchor-is-valid*/
 
-//import React, { useState } from "react";
-import React from "react";
+import React, { useState } from "react";
 import Img from 'gatsby-image';
+import FlagUK from './flag-uk'
 
 import "./sheet.sass";
 import "./sheet-animations.sass";
@@ -10,16 +10,11 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import FlagUK from './flag-uk'
-
-// Add all icons to the library so you can use it in your page
 library.add(fas, far, fab)
 
 const Spacer = () => <div className="spacer" />
 const ItemSpacer = () => <div className="item-spacer" />
-
 const ProfileImage = ({ data }) => <Img className="profile" fluid={ data.theme.profilePicture.fluid } /> 
-
 const SidebarHeader = ({ children }) => <h2>{ children }</h2>
 const SidebarListItem = node => 
   node.href ? <li className='link' title={ node.note }>
@@ -27,7 +22,6 @@ const SidebarListItem = node =>
                 <a href={ node.href } target={node.href.startsWith('http')?"_blank":"_self"}>{ node.label }</a>
               </li>
             : <li><i className={ node.faIcon }></i><span>{ node.label }</span></li>
-
 const StorySection = ({ children, title }) => (
   <div className="section">
     <h1>{ title }</h1>
@@ -71,13 +65,12 @@ const ResumeSheet = ({ data }) => {
             data.general.projectsPrologue && false &&
             <div className="item">
               <div className="text" dangerouslySetInnerHTML={{ __html: data.general.projectsPrologue }} />
-              <ItemSpacer/>
             </div>
           }
           {
             data.projects.nodes.filter( node => node.priority > 3 ).map( ( node, i ) => (
               <div key={ node.id } className="item">
-                { i > 0 && <ItemSpacer/> }
+                <ItemSpacer/>
                 <div className="upper-row">
                   <h3 className="job-title">{ node.title }</h3>
                 </div>
@@ -113,9 +106,7 @@ const ResumeSheet = ({ data }) => {
           </StorySection>
           
           <Spacer/>
-
           <Spacer/>
-
           <Spacer/>
 
         </div>
