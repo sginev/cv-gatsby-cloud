@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content, jsx-a11y/anchor-is-valid*/
 
-import React, { useState } from "react";
-import { Link } from "gatsby";
+//import React, { useState } from "react";
+import React from "react";
 import Img from 'gatsby-image';
 
 import "./sheet.sass";
@@ -22,7 +22,10 @@ const ProfileImage = ({ data }) => <Img className="profile" fluid={ data.theme.p
 
 const SidebarHeader = ({ children }) => <h2>{ children }</h2>
 const SidebarListItem = node => 
-  node.href ? <li className='link'><i className={ node.faIcon }></i><a href={ node.href }>{ node.label }</a></li>
+  node.href ? <li className='link' title={ node.note }>
+                <i className={ node.faIcon }></i>
+                <a href={ node.href } target={node.href.startsWith('http')?"_blank":"_self"}>{ node.label }</a>
+              </li>
             : <li><i className={ node.faIcon }></i><span>{ node.label }</span></li>
 
 const StorySection = ({ children, title }) => (

@@ -1,26 +1,21 @@
+//import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import React from 'react'
-import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
 import ResumeSheet from '../components/sheet'
 import { HelmetDatoCms } from "gatsby-source-datocms"
 
 import '@fortawesome/fontawesome';
 import "../styles/index.sass";
 
-    //<HelmetDatoCms seo={ data.core.seoMetaTags } />
 export default ({ data }) => (
   <div className="desk">
-    
-    <div className="background" />
-    
+    <HelmetDatoCms seo={ data.core.seoMetaTags } />
     <ResumeSheet data={ data } />
-
     <footer className="footer">
       <div className="text-center">
         <small className="copyright">{data.core.copyright}</small>
       </div>
     </footer>
-
   </div>
 )
 
@@ -50,8 +45,10 @@ query IndexQuery {
   skills: allDatoCmsSkill(sort: {order: ASC, fields: position}) {
     nodes {
       id
-      faIcon
       label
+      faIcon
+      href
+      note
       confidence
       priority
       categories

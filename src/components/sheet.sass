@@ -57,17 +57,22 @@ $sidebar-width: 256px
       display: flex
       flex-direction: column
       justify-content: flex-end
-      align-items: flex-end
+      align-items: center
+      width: 360px
+      overflow: show
+      overflow: visible
+      position: relative
     h1
       color: $color-dark
-      text-align: left
+      white-space: pre
       font-size: 52px
       letter-spacing: .15em
     h3
       color: $color-accent
-      text-align: left
       font-size: 24px
-      padding-right: 16px
+      position: absolute
+      right: 10px
+      top: 70px
   
   .story
     padding: 20px $story-padding
@@ -85,14 +90,6 @@ $sidebar-width: 256px
       padding: .1em 0
       padding-right: 2em
       transition: padding-right .25s
-      &:after 
-        $w: 8px
-        content: ''
-        position: absolute
-        top: 0px
-        right: -$w
-        bottom: 0px
-        border-right: $w solid $color-accent
       &:before
         content: ''
         position: absolute
@@ -101,6 +98,14 @@ $sidebar-width: 256px
         bottom: 0px
         width: $story-padding
         background: $color-dark
+      &:after 
+        $w: 8px
+        content: ''
+        position: absolute
+        top: 0px
+        right: -$w
+        bottom: 0px
+        border-right: $w solid $color-accent
     .section:hover h1
       padding-right: 2.25em
 
@@ -233,5 +238,7 @@ $sidebar-width: 256px
   right: 0
   left: 0
   top: 0
+  transition: background-color .5s
+
 
   
