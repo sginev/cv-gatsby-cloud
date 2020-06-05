@@ -49,7 +49,7 @@ const StorySections = {
       </div>
     }
     {
-      data.projects.nodes.filter( node => node.priority > 3 ).map( ( node, i ) => (
+      data.projects.nodes.filter( node => node.priority > 4 ).map( ( node, i ) => (
         <div key={ node.id } className="item" /*onClick={ () => selectProject( node.id ) }*/ >
           <ItemSpacer/>
           <div className="upper-row">
@@ -105,7 +105,7 @@ const ResumeSheet = ({ data }) => {
     <div className="sheet">
       
       <div className="top-detail" />
-      
+
       <div className="content">
         <div className="header">
           <div>
