@@ -4,4 +4,6 @@ tasks:
     openIn: right
 ports:
   - port: 8000
-    onOpen: open-browser
+    onOpen: ignore
+  - port: 4000
+    onOpen: ignore
