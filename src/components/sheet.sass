@@ -1,3 +1,5 @@
+@import "../styles/variables"
+
 $color-accent: #BA9432
 $color-dark: #393939
 
@@ -11,18 +13,21 @@ $sidebar-width: 256px
   display: flex
   flex-direction: column
   align-items: center
-  padding-top: 36px
   padding-bottom: 240px
+  @media screen and (min-width: $w-sheet)
+    padding-top: 36px
+  transition: padding 250ms
   
 .sheet
   background-color: white
   width: 100%
   max-width: 960px
-  min-height: 1680px
-  -webkit-box-shadow: 0px 2px 140px rgba(0, 0, 0, 0.2)
-  -moz-box-shadow: 0px 2px 140px rgba(0, 0, 0, 0.2)
-  box-shadow: 0px 2px 140px rgba(0, 0, 0, 0.2)
+  min-height: 1680px  
   position: relative
+  @media screen and (min-width: $w-sheet)
+    -webkit-box-shadow: 0px 2px 140px rgba(0, 0, 0, 0.2)
+    -moz-box-shadow: 0px 2px 140px rgba(0, 0, 0, 0.2)
+    box-shadow: 0px 2px 140px rgba(0, 0, 0, 0.2)
 
   font-family: Lato
   cursor: default
@@ -51,11 +56,13 @@ $sidebar-width: 256px
 
   .header
     height: 280px
-    padding: 80px 60px
+    padding: 80px $sidebar-width
     display: flex
     flex-direction: column
     justify-content: flex-start
     align-items: center
+    @media screen and (max-width: $w-sheet)
+      align-items: flex-end
     &>div
       display: flex
       flex-direction: column
@@ -64,6 +71,8 @@ $sidebar-width: 256px
       max-width: 360px
       overflow: visible
       position: relative
+      @media screen and (max-width: $w-sheet)
+        max-width: none  
     h1
       color: $color-dark
       white-space: pre
@@ -141,8 +150,9 @@ $sidebar-width: 256px
         right: 0
         width: 100%
         height: 50px
-        //max-width: 200px
-        transition: 300ms opacity
+        transition: 300ms opacity, 100ms height
+        @media screen and (max-width: $w-sheet)
+          height: 3.5vw
         img
           object-fit: contain !important
           object-position: right top !important
@@ -161,7 +171,6 @@ $sidebar-width: 256px
         opacity: .8
       .time
         opacity: .6
-
 
 
 .sidebar
@@ -258,3 +267,5 @@ $sidebar-width: 256px
 .desk:before
   background-color: #cfcfcf
   
+
+

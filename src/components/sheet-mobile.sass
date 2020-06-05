@@ -23,13 +23,17 @@
       padding-left: 30px
       padding-right: 30px
       padding-bottom: 20px
+      transition: padding 250ms 
       font-size: 14px
       .xp-header
         height: auto
         .logo
           position: relative
-          margin-bottom: 15vw
+          margin-top: 5vw
+          margin-bottom: 10vw
           right: auto
+          height: 100px
+          width: 100%
           img
             object-position: center center !important
         .company,
@@ -39,6 +43,7 @@
   .sidebar
     position: relative
     width: 100%
-    font-size: 5vw
+    @media screen and (max-width: 380px)
+      font-size: 5vw
     .profile
       display: none
