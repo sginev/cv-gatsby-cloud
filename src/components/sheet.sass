@@ -145,8 +145,21 @@ $sidebar-width: 256px
         img
           object-fit: contain !important
           object-position: right top !important
-    .item:hover .xp-header .logo
-      opacity: .7
+      .job-title
+        font-size: small
+        opacity: .7
+        transition: 300ms opacity
+      .time
+        font-size: smaller
+        opacity: .4
+        transition: 300ms opacity
+    .item:hover .xp-header 
+      .logo
+        opacity: .7
+      .job-title
+        opacity: .8
+      .time
+        opacity: .6
 
 
 
