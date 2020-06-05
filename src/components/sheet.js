@@ -6,6 +6,7 @@ import FlagUK from './flag-uk'
 
 import "./sheet.sass";
 import "./sheet-animations.sass";
+import "./sheet-mobile.sass";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
@@ -112,10 +113,6 @@ const ResumeSheet = ({ data }) => {
             </div>
           </StorySection>
           
-          <Spacer/>
-          <Spacer/>
-          <Spacer/>
-
         </div>
       </div>
 

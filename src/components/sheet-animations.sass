@@ -1,97 +1,100 @@
+@import "../styles/variables"
+
 $color-accent: #BA9432
 $slide-distance: 20px
 $slide-delay: 200ms
 
-@keyframes fadein
-  from
-    opacity: 0
-.desk:before
-  animation: 500ms ease fadein-sheet
+@media screen and (min-width: $w-mobile)
+  @keyframes fadein
+    from
+      opacity: 0
+  .desk:before
+    animation: 500ms ease fadein
 
-@keyframes fadein-sheet
-  0%
-    opacity: 0
-    transform: translate(0px, 10px)
-.sheet
-  animation: 500ms ease fadein-sheet
+  @keyframes fadein-sheet
+    0%
+      opacity: 0
+      transform: translate(0px, 10px)
+  .sheet
+    animation: 500ms ease fadein-sheet
 
-@keyframes slide-sidebar
-  from
+  @keyframes slide-sidebar
+    from
+      opacity: 0
+      right: -$slide-distance
+    to
+      opacity: 1
+  .sidebar
     opacity: 0
-    right: -$slide-distance
-  to
-    opacity: 1
-.sidebar
-  opacity: 0
-  animation: 300ms ease slide-sidebar forwards
-  animation-delay: $slide-delay
-
-@keyframes fadein-profession
-  from
-    opacity: 0
-    transform: translate(5px, 0px)
-  to
-    opacity: 1
-.content .header .job
-  opacity: 0
-  animation: 1.5s ease forwards fadein-profession
-  animation-delay: .5s
-.content .header .name
-  transition: letter-spacing 850ms
-.content .header .name:hover
-  letter-spacing: .18em
-
-@keyframes slide-content
-  from
-    opacity: 0
-    transform: translate(-$slide-distance, 0px)
-  to
-    opacity: 1
-.content .story
-  opacity: 0
-  animation: 300ms ease slide-content forwards
-  animation-delay: $slide-delay
-
-@keyframes slide-story-section-header
-  from
-    //padding-right: 1em
-    transform: translate(-20px, 0px)
-.content .story .section h1
-    animation: 300ms ease forwards slide-story-section-header
+    animation: 300ms ease slide-sidebar forwards
     animation-delay: $slide-delay
-.content .story .section:hover h1
-    padding-right: 2.125em
 
-
-
-@keyframes flash-underline
-  0%
-    width: 0%
-    left: 0
-    right: 0
+  @keyframes fadein-profession
+    from
+      opacity: 0
+      transform: translate(5px, 0px)
+    to
+      opacity: 1
+  .content .header .job
     opacity: 0
-  50% 
-    width: 100%
-    left: 0
-    right: 0
-    opacity: .5
-  99% 
-    width: 0%
-    left: 100%
-    right: 0
-    opacity: .25
+    animation: 1.5s ease forwards fadein-profession
+    animation-delay: .5s
+  .content .header .name
+    transition: letter-spacing 850ms
+  .content .header .name:hover
+    letter-spacing: .18em
 
-.content
-  .header
-    h3:after 
-      $w: 2px
-      content: ''
-      position: absolute
+  @keyframes slide-content
+    from
+      opacity: 0
+      transform: translate(-$slide-distance, 0px)
+    to
+      opacity: 1
+  .content .story
+    opacity: 0
+    animation: 300ms ease slide-content forwards
+    animation-delay: $slide-delay
+
+  @keyframes slide-story-section-header
+    from
+      //padding-right: 1em
+      transform: translate(-20px, 0px)
+  .content .story .section h1
+      animation: 300ms ease forwards slide-story-section-header
+      animation-delay: $slide-delay
+  .content .story .section:hover h1
+      padding-right: 2.125em
+
+
+
+  @keyframes flash-underline
+    0%
+      width: 0%
+      left: 0
+      right: 0
+      opacity: 0
+    50% 
+      width: 100%
+      left: 0
+      right: 0
+      opacity: .5
+    99% 
+      width: 0%
       left: 100%
-      right: 0px
-      bottom: 0px
-      border-bottom: $w solid $color-accent
-      animation: .6s flash-underline
-      display: none
-    h3:hover:after 
-      display: block
+      right: 0
+      opacity: .25
+
+  .content
+    .header
+      h3:after 
+        $w: 2px
+        content: ''
+        position: absolute
+        left: 100%
+        right: 0px
+        bottom: 0px
+        border-bottom: $w solid $color-accent
+        animation: .6s flash-underline
+        display: none
+      h3:hover:after 
+        display: block
