@@ -31,9 +31,68 @@ const StorySection = ({ children, title }) => (
   </div>
 )
 
-//const avatarSize = 160
-//const avatarUrl = `https://www.gravatar.com/avatar/3f1e138aed35af0b978a9140d29bc067?s=${ avatarSize }&d=http%3A%2F%2Fcv.thechoephix.com%2Fassets%2Fimages%2FDSC00884-1.png`
-//const ProfileImage = ({ data }) => <img className="profile" src={ avatarUrl } width={ avatarSize } height={ avatarSize } alt=""/> 
+//// Defining the sections separately here allows us to order them via the headless CMS
+const StorySections = {
+  "careerProfile" : ({ data }) => (
+    <StorySection title="Career Profile">
+      <div className="item">
+        <div className="text" dangerouslySetInnerHTML={{ __html: data.general.introduction }} />
+      </div>
+    </StorySection>
+  ),
+  "projects" : ({ data, selectedProject }) => (
+    <StorySection title="Projects">
+    {
+      data.general.projectsPrologue && false &&
+      <div className="item">
+        <div className="text" dangerouslySetInnerHTML={{ __html: data.general.projectsPrologue }} />
+      </div>
+    }
+    {
+      data.projects.nodes.filter( node => node.priority > 3 ).map( ( node, i ) => (
+        <div key={ node.id } className="item" /*onClick={ () => selectProject( node.id ) }*/ >
+          <ItemSpacer/>
+          <div className="upper-row">
+            <h3 className="title">{ node.title }</h3>
+          </div>
+          <div className="details" active={ selectedProject === node.id ? '' : null } >
+            { node.links.map( link => <a key={ link.id } href={ link.url } target="_blank" rel="noreferrer">Link to: { link.label }</a> ) }
+            { node.links.length ? <p>-</p> : null }
+          </div>
+          <div className="project-tagline" dangerouslySetInnerHTML={{ __html: node.summary }}>
+          </div>
+        </div>
+      ) )
+    }
+    </StorySection>
+  ),
+  "experiences" : ({ data }) => (
+    <StorySection title="Experiences">
+    {
+      data.experiences.nodes.map( ( node, i ) => (
+        <div key={ node.id } className="item">
+          <ItemSpacer/>
+          <div className="xp-header">
+            <div className="logo"><Img className="logo" fluid={ node.logo.fluid } width={200}/></div>
+            <h3 className="company">{ node.title }</h3>
+            <div className="job-title">{ node.jobTitle }</div>
+            <div className="time">({ node.dates })</div>
+          </div>
+          <div className="description" dangerouslySetInnerHTML={{ __html: node.description }} />
+          <ItemSpacer/>
+        </div>
+      ) )
+    }
+    </StorySection>
+  ),
+  "miscellaneous" : ({ data }) => (
+    <StorySection title="Miscellaneous">
+      <div className="item">
+        <div className="text" dangerouslySetInnerHTML={{ __html: data.general.miscellaneous }} />
+      </div>
+    </StorySection>
+  )
+}
 
 const ResumeSheet = ({ data }) => {
   const [ selectedProject, selectProject ] = useState( null )
@@ -46,9 +105,7 @@ const ResumeSheet = ({ data }) => {
     <div className="sheet">
       
       <div className="top-detail" />
-
       
-
       <div className="content">
         <div className="header">
           <div>
@@ -57,62 +114,7 @@ const ResumeSheet = ({ data }) => {
           </div>
         </div>
         <div className="story">
-          
-          <StorySection title="Career Profile">
-            <div className="item">
-              <div className="text" dangerouslySetInnerHTML={{ __html: data.general.introduction }} />
-            </div>
-          </StorySection>
-          
-          <StorySection title="Projects">
-          {
-            data.general.projectsPrologue && false &&
-            <div className="item">
-              <div className="text" dangerouslySetInnerHTML={{ __html: data.general.projectsPrologue }} />
-            </div>
-          }
-          {
-            data.projects.nodes.filter( node => node.priority > 3 ).map( ( node, i ) => (
-              <div key={ node.id } className="item" /*onClick={ () => selectProject( node.id ) }*/ >
-                <ItemSpacer/>
-                <div className="upper-row">
-                  <h3 className="title">{ node.title }</h3>
-                </div>
-                <div className="details" active={ selectedProject === node.id ? '' : null } >
-                  { node.links.map( link => <a key={ link.id } href={ link.url } target="_blank" rel="noreferrer">Link to: { link.label }</a> ) }
-                  { node.links.length ? <p>-</p> : null }
-                </div>
-                <div className="project-tagline" dangerouslySetInnerHTML={{ __html: node.summary }}>
-                </div>
-              </div>
-            ) )
-          }
-          </StorySection>
-          
-          <StorySection title="Experiences">
-          {
-            data.experiences.nodes.map( ( node, i ) => (
-              <div key={ node.id } className="item">
-                <ItemSpacer/>
-                <div className="xp-header">
-                  <div className="logo"><Img className="logo" fluid={ node.logo.fluid } width={200}/></div>
-                  <h3 className="company">{ node.title }</h3>
-                  <div className="job-title">{ node.jobTitle }</div>
-                  <div className="time">({ node.dates })</div>
-                </div>
-                <div className="description" dangerouslySetInnerHTML={{ __html: node.description }} />
-                <ItemSpacer/>
-              </div>
-            ) )
-          }
-          </StorySection>
-          
-          <StorySection title="Miscellaneous">
-            <div className="item">
-              <div className="text" dangerouslySetInnerHTML={{ __html: data.general.miscellaneous }} />
-            </div>
-          </StorySection>
-          
+          { data.theme.sections.map( key => StorySections[ key ]({ data, selectedProject }) ) }
         </div>
       </div>
 

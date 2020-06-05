@@ -95,6 +95,7 @@ query IndexQuery {
   theme: datoCmsTheme(name: {eq: "pro-long"}) {
     name
     showEducation
+    sections
     profilePicture {
       fluid(maxWidth: 256, imgixParams: {fm: "jpg", auto: "compress", w:"256"}) {
         src
