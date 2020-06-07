@@ -35,6 +35,7 @@ const StorySection = ({ children, title }) => (
 const StorySections = {
   "careerProfile" : ({ data }) => (
     <StorySection title="Career Profile">
+      <ItemSpacer/>
       <div className="item">
         <div className="text" dangerouslySetInnerHTML={{ __html: data.general.introduction }} />
       </div>
@@ -87,6 +88,7 @@ const StorySections = {
   ),
   "miscellaneous" : ({ data }) => (
     <StorySection title="Miscellaneous">
+      <ItemSpacer/>
       <div className="item">
         <div className="text" dangerouslySetInnerHTML={{ __html: data.general.miscellaneous }} />
       </div>
